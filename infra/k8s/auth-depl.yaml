@@ -15,6 +15,14 @@ spec:
       containers:
         - name: auth
           image: levandocker321/auth
+          # Kubernetes cluster set as env variable
+          env:
+            - name: JWT_KEY
+              # Tell kubernetes the value comes from secret
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
 ---
 apiVersion: v1
 kind: Service
