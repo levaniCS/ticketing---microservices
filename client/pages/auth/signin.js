@@ -6,7 +6,7 @@ const Signup = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const { doRequest, errors } = useRequest({
-		url: '/api/users/signup',
+		url: '/api/users/signin',
 		method: 'post',
 		body: {
 			email,
@@ -27,7 +27,7 @@ const Signup = () => {
 		>
 			<fieldset style={{ width: 500 }}>
 				<div className="text-gray text-center">
-					<legend>Sign Up</legend>
+					<legend>Sign In</legend>
 				</div>
 
 				<div className="control-group my-2">
@@ -67,7 +67,7 @@ const Signup = () => {
 
 				<div className="control-group my-2 ">
 					<div className="controls">
-						<button className="btn btn-success">Sign Up</button>
+						<button className="btn btn-success">Sign In</button>
 					</div>
 				</div>
 			</fieldset>

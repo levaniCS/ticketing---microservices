@@ -1,16 +1,28 @@
-import React from 'react'
+import buildClient from '../api/buildClient'
+import Link from 'next/link'
 
-const index = () => {
-	return (
-		<div className="divide-y divide-fuchsia-300">
-			<h1>Hello22222222</h1>
-			<h1>Hello</h1>
-			<h1>Hello</h1>
-			<h1>Hello</h1>
-			<h1>Hello</h1>
-			<h1>Hello</h1>
-		</div>
+const LandingPage = ({ currentUser }) => {
+	return currentUser ? (
+		<>
+			<h1>You are signed in</h1>
+		</>
+	) : (
+		<>
+			<h1>You are not signed in</h1>
+			<Link href="/auth/signup">Sign up</Link>
+			<Link href="/auth/signin">Sign In</Link>
+		</>
 	)
 }
 
-export default index
+LandingPage.getInitialProps = async (context) => {
+	const res = await buildClient(context)
+		.get('/api/users/currentuser')
+		.catch((err) => {
+			console.log(err)
+		})
+
+	return { currentUser: res?.data }
+}
+
+export default LandingPage
