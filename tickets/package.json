@@ -1,5 +1,5 @@
 {
-  "name": "auth",
+  "name": "tickets",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -15,7 +15,7 @@
     ]
   },
   "dependencies": {
-    "@levanisarishvili/common": "^1.0.8",
+    "@levanisarishvili/common": "^1.0.9",
     "@types/cookie-session": "^2.0.42",
     "@types/jsonwebtoken": "^8.5.1",
     "cookie-session": "^1.4.0",

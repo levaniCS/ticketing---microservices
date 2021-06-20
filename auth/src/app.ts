@@ -1,15 +1,12 @@
 import express from 'express'
 require('express-async-errors')
 import cookieSession from 'cookie-session'
+import { NotFoundError, errorHandler } from '@levanisarishvili/common'
 
 import { currentUserRouter } from './routes/current-user'
 import { signInRouter } from './routes/signin'
 import { signUpRouter } from './routes/signup'
 import { signOutRouter } from './routes/signout'
-
-// Middlewares
-import { NotFoundError } from './errors/not-found-error'
-import { errorHandler } from './middlewares/error-handler'
 
 const app = express()
 app.set('trust proxy', true)

@@ -17,6 +17,8 @@ spec:
           image: levandocker321/auth
           # Kubernetes cluster set as env variable
           env:
+            - name: MONGO_URI
+              value: 'mongodb://auth-mongo-srv:27017/auth'
             - name: JWT_KEY
               # Tell kubernetes the value comes from secret
               valueFrom:
