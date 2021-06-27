@@ -14,8 +14,12 @@ declare global {
 
 let mongo: any
 
+// Fake Nats connection
+jest.mock('../nats-wrapper')
+
 // Before first test runs
 beforeAll(async () => {
+	jest.clearAllMocks()
 	process.env.JWT_KEY = 'thisisjwtsecretkey'
 	mongo = new MongoMemoryServer()
 	const mongoUri = await mongo.getUri()
