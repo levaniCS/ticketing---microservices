@@ -27,6 +27,14 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
+    - image: levandocker321/orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
     - image: levandocker321/client
       context: client
       docker:
