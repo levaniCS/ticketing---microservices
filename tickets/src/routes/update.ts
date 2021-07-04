@@ -6,7 +6,7 @@ import {
 	requireAuth,
 	validateRequest
 } from '@levanisarishvili/common'
-import { Ticket } from '../../models/ticket'
+import { Ticket } from '../models/ticket'
 
 import { TicketUpdatedPublisher } from '../events/publishers/ticket-updated-publisher'
 import { natsWrapper } from '../nats-wrapper'
@@ -42,7 +42,8 @@ router.put(
 			id: ticket.id,
 			title: ticket.title,
 			price: ticket.price,
-			userId: ticket.userId
+			userId: ticket.userId,
+			version: ticket.version
 		})
 
 		res.send(ticket)

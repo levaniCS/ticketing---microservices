@@ -4,6 +4,7 @@ import { Order, OrderStatus } from './order'
 // An interface that describes the properties
 // that are required to create a new user
 interface TicketAttrs {
+	id: string
 	title: string
 	price: number
 }
@@ -47,7 +48,11 @@ const ticketSchema = new mongoose.Schema(
 
 // statics are the methods defined on the Model.
 ticketSchema.statics.build = (attrs: TicketAttrs) => {
-	return new Ticket(attrs)
+	return new Ticket({
+		_id: attrs.id,
+		title: attrs.title,
+		price: attrs.price
+	})
 }
 
 // 1) Run query and look at all the orders
