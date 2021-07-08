@@ -1,8 +1,10 @@
 import mongoose from 'mongoose'
-import { randomBytes } from 'crypto'
 
 import { app } from './app'
 import { natsWrapper } from './nats-wrapper'
+
+import { OrderCreatedListener } from './events/listeners/order-created-listener'
+import { OrderCancelledListener } from './events/listeners/order-cancelled-listener'
 
 const start = async () => {
 	if (!process.env.JWT_KEY) {
@@ -36,6 +38,10 @@ const start = async () => {
 		// This calls everytime restart from terminal or close process with CTRL + c
 		process.on('SIGINT', () => natsWrapper.client.close())
 		process.on('SIGTERM', () => natsWrapper.client.close())
+
+		// Init listeners for nats to listen incoming publishers
+		new OrderCreatedListener(natsWrapper.client).listen()
+		new OrderCancelledListener(natsWrapper.client).listen()
 
 		// Connect to MongoDB
 		await mongoose.connect(process.env.MONGO_URI, {

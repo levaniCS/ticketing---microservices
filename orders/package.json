@@ -15,7 +15,7 @@
     ]
   },
   "dependencies": {
-    "@levanisarishvili/common": "^1.0.13",
+    "@levanisarishvili/common": "^1.0.14",
     "@types/cookie-session": "^2.0.42",
     "@types/jsonwebtoken": "^8.5.1",
     "cookie-session": "^1.4.0",
