@@ -15,7 +15,7 @@
     ]
   },
   "dependencies": {
-    "@levanisarishvili/common": "^1.0.14",
+    "@levanisarishvili/common": "^1.0.15",
     "@types/bull": "^3.15.2",
     "bull": "^3.23.0",
     "node-nats-streaming": "^0.3.2",
