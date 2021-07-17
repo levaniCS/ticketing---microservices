@@ -1,16 +1,7 @@
-import request from 'supertest'
 import jwt from 'jsonwebtoken'
 import { MongoMemoryServer } from 'mongodb-memory-server'
 import mongoose from 'mongoose'
-import { app } from '../app'
 
-// declare global {
-// 	namespace NodeJS {
-// 		interface Global {
-// 			getCookie(): string[]
-// 		}
-// 	}
-// }
 declare global {
 	var getCookie: (id?: string) => string[]
 }
@@ -19,6 +10,8 @@ let mongo: any
 
 // Fake Nats connection
 jest.mock('../nats-wrapper')
+process.env.STRIPE_KEY =
+	'sk_test_51JEBR2BsDezS4VpfVj58sTnToOLfQ8l6oJXvX58bXzCTzQALwcM6nSJiPSgrzjMWOz3LgXiPYHmPDqxMxomeYIdh00ierfTbwu'
 
 // Before first test runs
 beforeAll(async () => {
@@ -51,10 +44,10 @@ afterAll(async () => {
 	await mongoose.connection.close()
 })
 
-global.getCookie = () => {
+global.getCookie = (id?: string) => {
 	// Build a JWT payload. { id, email }
 	const payload = {
-		id: new mongoose.Types.ObjectId().toHexString(),
+		id: id || new mongoose.Types.ObjectId().toHexString(),
 		email: 'test@test.com'
 	}
 
