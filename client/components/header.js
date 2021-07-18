@@ -2,8 +2,10 @@ import Link from 'next/link'
 
 const Header = ({ currentUser }) => {
 	const links = [
-		!currentUser && { label: 'Sign Up', href: '/auth/signup' },
+		!currentUser && { label: '+ Sign Up', href: '/auth/signup' },
 		!currentUser && { label: 'Sign In', href: '/auth/signin' },
+		currentUser && { label: '+ Sell Ticket', href: '/tickets/new' },
+		currentUser && { label: 'My Orders', href: '/orders' },
 		currentUser && { label: 'Sign Out', href: '/auth/signout' }
 	]
 		.filter(Boolean)

@@ -6,7 +6,9 @@ const AppRoot = ({ Component, pageProps, currentUser }) => {
 	return (
 		<div style={{ padding: '0 20%' }}>
 			<Header currentUser={currentUser} />
-			<Component {...pageProps} />
+			<div className="container mt-5">
+				<Component {...pageProps} currentUser={currentUser} />
+			</div>
 		</div>
 	)
 }
@@ -19,10 +21,14 @@ AppRoot.getInitialProps = async (appContext) => {
 
 	let pageProps = {}
 	if (appContext.Component.getInitialProps) {
-		pageProps = await appContext.Component.getInitialProps(appContext.ctx)
+		pageProps = await appContext.Component.getInitialProps(
+			appContext.ctx,
+			client,
+			res?.data.currentUser
+		)
 	}
 
-	return { currentUser: res?.data, pageProps }
+	return { currentUser: res?.data.currentUser, pageProps }
 }
 
 export default AppRoot
