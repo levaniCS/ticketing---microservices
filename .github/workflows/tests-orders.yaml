@@ -1,0 +1,13 @@
+
+name: tests-orders
+
+# When we want to run this action: push, pull or other
+on:
+  pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd orders && npm install && npm run test:ci
