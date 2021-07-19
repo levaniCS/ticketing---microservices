@@ -1,0 +1,21 @@
+name: deploy-manifests
+
+# This runs when accept pull request ((merge))
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'infra/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+#       deploy digitial ocean
+      - uses: digitialocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITIALOCEAN_ACCESS_TOKEN }}
+      - run: doctl kubernetes cluster kubeconfig save ticketing
+      - run: kubectl apply -f infra/k8s
