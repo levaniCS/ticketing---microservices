@@ -3,6 +3,9 @@ name: tests-payments
 # When we want to run this action: push, pull or other
 on:
   pull_request
+    paths:
+      # Run only this directory tests
+      - 'payments/**'
 
 jobs:
   build:
